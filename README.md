@@ -68,7 +68,7 @@ source ~/.bashrc
 aztec start --node --archiver --sequencer \
   --network alpha-testnet \
   --l1-rpc-urls <SEPOLIA_RPC> \
-  --l1-consensus-host-urls https://eth-beacon-chain-sepolia.drpc.org/rest/ \
+  --l1-consensus-host-urls <CONSENSUS-HOST-URL> \
   --sequencer.validatorPrivateKey <0xYourPrivateKey> \
   --sequencer.coinbase <0xYourAddress> \
   --p2p.p2pIp <YOUR_IP_ADDRESS>
