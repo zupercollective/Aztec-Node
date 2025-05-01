@@ -59,7 +59,10 @@ source ~/.bashrc
 ### 3.4 Start Your Sequencer
 
 - Ubah `<SEPOLIA_RPC>` menjadi URL RPC yang disediakan [public](https://chainlist.org) (search: **Ethereum Sepolia**) atau buat sendiri di [Alchemy](https://dashboard.alchemy.com/chains/eth?network=ETH_SEPOLIA) / [Infura](https://www.infura.io) / penyedia RPC lainnya terserahmu bebas.
+
 - Ubah `<CONSENSUS-HOST-URL>` menjadi **Ethereum Beacon Chain Sepolia**, buat di [dRPC](https://drpc.org/login).
+![image](https://github.com/user-attachments/assets/13c0d6b3-d244-4e66-9566-e78bad959327)
+
 - Ubah `<0xYourPrivateKey>` menjadi private key wallet yang sudah diisi SepoliaETH (gunakan wallet baru, dan jangan lupa **pakai prefix 0x**).
 - Ubah `<0xYourAddress>` menjadi wallet address dari private key sebelumnya.
 - Ubah `<YOUR_IP_ADDRESS>` menjadi alamat IP VPS mu.
