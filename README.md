@@ -1,57 +1,66 @@
-Penulis: [nama_penulis](link_twt)
+Penulis: [Naufal](https://x.com/0xfal)
 
-# Pengenalan
-Bab ini berisi pengenalan mengenai nama_project
-
-## Nama_Project
 > [!NOTE]
-> berikan_description_singkat_mengenai_project_tersebut
+> **WHAT IS Aztec?**\
+> TBD.
 
-### Investor
-taroh_img_investor_jika_ada
+# Tutorial Aztec Sequencer
 
-# Tutorial XXX
-Bab ini berisi tutorial cara menjalankan XXX
+## 1. Prerequisites
 
-## Requirement
-Syarat menjalankan XXX
-- Spek Komputer
-  
-| Name | Minimum |
-| ------------- | ------------- |
-| Operating System  | OS_NAME  |
-| CPU  | X Cores  |
-| RAM  | X GB  |
-| SSD  | XX GB  |
-- item_2_dan_seterusnya_jika_ada
+- [Cara terhubung ke VPS](https://github.com/ZuperHunt/Connect-to-VPS)
+- [Cara menginstal Docker](https://github.com/zupercollective/Installing-Docker)
 
-> [!TIP]
-> Kami menggunakan Digital Ocean dengan speksifikasi `XX/ X Core/ X GB RAM/ XX GB SSD`. Jika kamu membutuhkan VPS, kami memiliki link gratis credit VPS DigitalOcean sebesar $200. Cukup untuk menjalankan XXX selama XX . Daftar sekarang dengan [link utama](link_reff_do_kamu) / [link cadangan](link_reff_do_2_kamu) untuk mendapatkannya.
-  
-## Dependencies
+## 2. Requirements
 
-### Install X 
+### Hardware
+
+| Part | Minimum | Recommended |
+| ------------- | ------------- | ------------- |
+| CPU | - | ≥ 8 cores |
+| RAM | - | 16 GB |
+| SSD | - | 1 TB |
+
+### Software
+
+| ✅ Linux | ✅ macOS | ✅ Windows (WSL) |
+| ------------- | ------------- | ------------- |
+
+> [!NOTE]
+> Tutorial ini dibuat menggunakan Linux (Ubuntu), untuk sistem operasi lainnya mungkin akan sedikit berbeda!
+
+## 3. Execution
+
+### 3.1 Aztec sandbox
+
 ```
-sudo apt-get install xxxx
+bash -i <(curl -s https://install.aztec.network)
 ```
 
-## Menjalankan XXX
+Setelah instalasi berhasil, restart terminal atau VPS mu.
 
-### Run XXX
+### 3.2 Start Your Sequencer
+
+- Ubah `<SEPOLIA_RPC>` menjadi URL RPC yang disediakan [public](https://chainlist.org) (search: **Ethereum Sepolia**) atau buat sendiri di [Alchemy](https://dashboard.alchemy.com/chains/eth?network=ETH_SEPOLIA) / [Infura](https://www.infura.io) / penyedia RPC lainnya terserahmu bebas.
+- Ubah `<0xYourPrivateKey>` menjadi private key wallet yang sudah diisi SepoliaETH (gunakan wallet baru, dan jangan lupa **pakai prefix 0x**).
+- Ubah `<0xYourAddress>` menjadi wallet address dari private key sebelumnya.
+- Ubah `<YOUR_IP_ADDRESS>` menjadi alamat IP VPS mu.
+
 ```
-code blocks for commands
+aztec start --node --archiver --sequencer \
+  --network alpha-testnet \
+  --l1-rpc-urls <SEPOLIA_RPC> \
+  --l1-consensus-host-urls https://eth-beacon-chain-sepolia.drpc.org/rest/ \
+  --sequencer.validatorPrivateKey <0xYourPrivateKey> \
+  --sequencer.coinbase <0xYourAddress> \
+  --p2p.p2pIp <YOUR_IP_ADDRESS>
 ```
 
-## Help
+---
 
-Join komunitas [Discord ZuperHunt](https://t.co/n7TeWVlA48) jika kamu ada pertanyaan.
+Reach us if you have any question:\
+ZuperCollective's [Discord server](https://discord.gg/ZuperCollective) | [X(Twitter)](https://twitter.com/ZuperCollective)
 
-## Change Logs
+# Acknowledgements
 
-* 0.0.1
-    * Initial Release
-
-## Acknowledgments
-
-Referensi
-* [nama_referensi](link_referensi)
+* [Aztec Docs](https://docs.aztec.network/next/the_aztec_network/guides/run_nodes)
