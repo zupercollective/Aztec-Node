@@ -45,18 +45,16 @@ tmux new -s <SESSION_NAME>
 bash -i <(curl -s https://install.aztec.network)
 ```
 
+Ketik saja `y` pas muncul seperti gambar berikut.
+
+![image](https://github.com/user-attachments/assets/147ccf0f-0f4b-4655-b526-9bc764229ebb)
+
 ### 3.3 Add to PATH
 
 ```
 echo 'export PATH="$HOME/.aztec/bin:$PATH"' >> ~/.bashrc
 source ~/.bashrc
 ```
-
-Ketik saja `y` pas muncul seperti gambar berikut.
-
-![image](https://github.com/user-attachments/assets/147ccf0f-0f4b-4655-b526-9bc764229ebb)
-
-Setelah instalasi seharusnya command `aztec` akan otomatis terdeteksi dan bisa digunakan langsung, jika tidak maka restart manual VPS mu.
 
 ### 3.4 Start Your Sequencer
 
