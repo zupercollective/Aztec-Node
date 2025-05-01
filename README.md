@@ -43,7 +43,13 @@ tmux new -s <SESSION_NAME>
 
 ```
 bash -i <(curl -s https://install.aztec.network)
-clear
+```
+
+### 3.3 Add to PATH
+
+```
+echo 'export PATH="$HOME/.aztec/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
 ```
 
 Ketik saja `y` pas muncul seperti gambar berikut.
@@ -52,9 +58,10 @@ Ketik saja `y` pas muncul seperti gambar berikut.
 
 Setelah instalasi seharusnya command `aztec` akan otomatis terdeteksi dan bisa digunakan langsung, jika tidak maka restart manual VPS mu.
 
-### 3.3 Start Your Sequencer
+### 3.4 Start Your Sequencer
 
 - Ubah `<SEPOLIA_RPC>` menjadi URL RPC yang disediakan [public](https://chainlist.org) (search: **Ethereum Sepolia**) atau buat sendiri di [Alchemy](https://dashboard.alchemy.com/chains/eth?network=ETH_SEPOLIA) / [Infura](https://www.infura.io) / penyedia RPC lainnya terserahmu bebas.
+- Ubah `<CONSENSUS-HOST-URL>` menjadi **Ethereum Beacon Chain Sepolia**, buat di [dRPC](https://drpc.org/login).
 - Ubah `<0xYourPrivateKey>` menjadi private key wallet yang sudah diisi SepoliaETH (gunakan wallet baru, dan jangan lupa **pakai prefix 0x**).
 - Ubah `<0xYourAddress>` menjadi wallet address dari private key sebelumnya.
 - Ubah `<YOUR_IP_ADDRESS>` menjadi alamat IP VPS mu.
