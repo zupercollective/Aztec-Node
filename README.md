@@ -99,11 +99,11 @@ Akan muncul `block number` mu, copy dan simpan.
 
 ### 3.6 Get Your Proof
 
-Jalankan perintah berikut, ganti `<YOUR_IP_ADDRESS>` menjadi alamat IP VPS mu.
+Jalankan perintah berikut, ganti `<YOUR_IP_ADDRESS>` menjadi alamat IP VPS mu, dan ganti `<BLOCK_NUMBER>` dengan block number yang didapat sebelumnya.
 
 ```
 curl -s -X POST -H 'Content-Type: application/json' \
--d '{"jsonrpc":"2.0","method":"node_getArchiveSiblingPath","params":["20434","20434"],"id":67}' \
+-d '{"jsonrpc":"2.0","method":"node_getArchiveSiblingPath","params":["<BLOCK_NUMBER>","<BLOCK_NUMBER>"],"id":67}' \
 <YOUR_IP_ADDRESS>:8080 | jq -r ".result"
 ```
 
