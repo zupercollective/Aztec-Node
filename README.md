@@ -12,9 +12,9 @@ Penulis: [Naufal](https://x.com/0xfal)
 
 | Part | Minimum | Recommended |
 | ------------- | ------------- | ------------- |
-| CPU | - | 8 cores |
-| RAM | - | 16 GB |
-| SSD | - | 1 TB |
+| CPU | 2 cores | 8 cores |
+| RAM | 2 GB | 16 GB |
+| SSD | 20 GB | 1 TB |
 
 ### Software
 
@@ -83,6 +83,16 @@ aztec start --node --archiver --sequencer \
   --p2p.p2pIp <YOUR_IP_ADDRESS>
 ```
 
+TUNGGU sampai node-mu synced baru lanjut ke step berikutnya, jalankan perintah berikut untuk megecek statusnya. Ganti `<YOUR_IP_ADDRESS>` menjadi alamat IP VPS mu.
+
+```
+CID=$(docker ps -q --filter ancestor=aztecprotocol/aztec)
+docker exec -it "$CID" curl -s \
+  -H 'Content-Type: application/json' \
+  -d '{"jsonrpc":"2.0","id":1,"method":"node_getWorldStateSyncStatus","params":[]}' \
+  <YOUR_IP_ADDRESS> | jq
+```
+
 ### 3.6 Get Your Block Number
 
 Detach dulu dari session, `ctrl` + `b`, kemudian tekan tombol `d`. Kalau kalian dari smartphone, simply exit dulu trus connect lagi, nanti pasti akan mulai dari luar session.
@@ -114,6 +124,24 @@ Akan muncul `proof` mu, copy dan simpan.
 - Join [Aztec Discord server](https://discord.gg/aztec).
 - Jalankan perintah `/operator start` di [operator channel](https://discord.com/channels/1144692727120937080/1367196595866828982).
 - Isi dengan wallet address, block number, dan proof punyamu.
+
+### 3.9 Register as a Validator
+
+- Ubah `<SEPOLIA_RPC>` menjadi RPC URL mu sebelumnya.
+- Ubah `<0xYourPrivateKey>` menjadi private key wallet mu sebelumnya.
+- Ubah `<0xYourAddress>` menjadi wallet address mu sebelumnya.
+
+```
+aztec add-l1-validator \
+  --l1-rpc-urls <SEPOLIA_RPC> \
+  --private-key <0xYourPrivateKey> \
+  --attester <0xYourAddress> \
+  --proposer-eoa <0xYourAddress> \
+  --staking-asset-handler 0xF739D03e98e23A7B65940848aBA8921fF3bAc4b2 \
+  --l1-chain-id 11155111
+```
+
+Kalian akan mendapati error apabila saldo ETH dari contract Aztec sedang kosong, cek berkala di [explorer](https://sepolia.etherscan.io/address/0x6653c74c968Ee7EF8819A10B04B848Dd36610f66). Kalau ada ETH-nya baru bisa mendaftar validator.
 
 ---
 
