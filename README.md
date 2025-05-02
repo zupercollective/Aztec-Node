@@ -6,18 +6,13 @@ Penulis: [Naufal](https://x.com/0xfal)
 
 # Tutorial Aztec Sequencer
 
-## 1. Prerequisites
-
-- [Cara terhubung ke VPS](https://github.com/ZuperHunt/Connect-to-VPS)
-- [Cara menginstal Docker](https://github.com/zupercollective/Installing-Docker)
-
-## 2. Requirements
+## 1. Requirements
 
 ### Hardware
 
 | Part | Minimum | Recommended |
 | ------------- | ------------- | ------------- |
-| CPU | - | ≥ 8 cores |
+| CPU | - | 8 cores |
 | RAM | - | 16 GB |
 | SSD | - | 1 TB |
 
@@ -28,6 +23,11 @@ Penulis: [Naufal](https://x.com/0xfal)
 
 > [!NOTE]
 > Tutorial ini dibuat menggunakan Linux (Ubuntu), untuk sistem operasi lainnya mungkin akan sedikit berbeda!
+
+## 2. Prerequisites
+
+- [Cara terhubung ke VPS](https://github.com/ZuperHunt/Connect-to-VPS)
+- [Cara menginstal Docker](https://github.com/zupercollective/Installing-Docker)
 
 ## 3. Execution
 
@@ -56,6 +56,12 @@ echo 'export PATH="$HOME/.aztec/bin:$PATH"' >> ~/.bashrc
 source ~/.bashrc
 ```
 
+### 3.4 Update Aztec Toolchain
+
+```
+aztec-up alpha-testnet
+```
+
 ### 3.4 Start Your Sequencer
 
 - Ubah `<SEPOLIA_RPC>` menjadi URL RPC yang disediakan [public](https://chainlist.org) (search: **Ethereum Sepolia**) atau buat sendiri di [Alchemy](https://dashboard.alchemy.com/chains/eth?network=ETH_SEPOLIA) / [Infura](https://www.infura.io) / penyedia RPC lainnya terserahmu bebas.
@@ -77,6 +83,38 @@ aztec start --node --archiver --sequencer \
   --p2p.p2pIp <YOUR_IP_ADDRESS>
 ```
 
+### 3.5 Get Your Block Number
+
+Detach dulu dari session, `ctrl` + `b`, kemudian tekan tombol `d`. Kalau kalian dari smartphone, simply exit dulu trus connect lagi, nanti pasti akan mulai dari luar session.
+
+Kalau sudah berada di luar session, jalankan perintah berikut. Ganti `<YOUR_IP_ADDRESS>` menjadi alamat IP VPS mu.
+
+```
+curl -s -X POST -H 'Content-Type: application/json' \
+-d '{"jsonrpc":"2.0","method":"node_getL2Tips","params":[],"id":67}' \
+<YOUR_IP_ADDRESS>:8080 | jq -r ".result.proven.number"
+```
+
+Akan muncul `block number` mu, copy dan simpan.
+
+### 3.6 Get Your Proof
+
+Jalankan perintah berikut, ganti `<YOUR_IP_ADDRESS>` menjadi alamat IP VPS mu.
+
+```
+curl -s -X POST -H 'Content-Type: application/json' \
+-d '{"jsonrpc":"2.0","method":"node_getArchiveSiblingPath","params":["20434","20434"],"id":67}' \
+<YOUR_IP_ADDRESS>:8080 | jq -r ".result"
+```
+
+Akan muncul `proof` mu, copy dan simpan.
+
+### 3.7 Get Role
+
+- Join [Aztec Discord server](https://discord.gg/aztec).
+- Jalankan perintah `/operator start` di [operator channel](https://discord.com/channels/1144692727120937080/1367196595866828982).
+- Isi dengan wallet address, block number, dan proof punyamu.
+
 ---
 
 Reach us if you have any question:\
@@ -85,3 +123,4 @@ ZuperCollective's [Discord server](https://discord.gg/ZuperCollective) | [X(Twit
 # Acknowledgements
 
 * [Aztec Docs](https://docs.aztec.network/next/the_aztec_network/guides/run_nodes)
+* [Tmux Cheat Sheet & Quick Reference](https://tmuxcheatsheet.com/)
