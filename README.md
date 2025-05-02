@@ -64,10 +64,21 @@ aztec-up alpha-testnet
 
 ### 3.5 Start Your Sequencer
 
-- Ubah `<SEPOLIA_RPC>` menjadi URL RPC yang disediakan [public](https://chainlist.org) (search: **Ethereum Sepolia**) atau buat sendiri di [Alchemy](https://dashboard.alchemy.com/chains/eth?network=ETH_SEPOLIA) / [Infura](https://www.infura.io) / penyedia RPC lainnya terserahmu bebas.
+- Ubah `<SEPOLIA_RPC>` menjadi URL RPC:
+  - [Alchemy](https://dashboard.alchemy.com/chains/eth?network=ETH_SEPOLIA) (goat)
+  - [Infura/MetaMask Developer](https://developer.metamask.io/key/all-endpoints) (bapuk)
+  - [QuickNode](https://dashboard.quicknode.com/endpoints/new/ETH/ethereum-sepolia) (gud)
+  - Penyedia RPC lainnya terserahmu bebas.
 
-- Ubah `<CONSENSUS-HOST-URL>` menjadi **Ethereum Beacon Chain Sepolia**, buat di [dRPC](https://drpc.org/login).
-![image](https://github.com/user-attachments/assets/13c0d6b3-d244-4e66-9566-e78bad959327)
+- Ubah `<CONSENSUS-HOST-URL>` menjadi **Ethereum Beacon Chain Sepolia**:
+  - [dRPC](https://drpc.org/login)
+  
+  ![image](https://github.com/user-attachments/assets/13c0d6b3-d244-4e66-9566-e78bad959327)
+  
+  - [Chainstack](https://console.chainstack.com/nodes)
+  
+  ![image](https://github.com/user-attachments/assets/89b297f6-7618-4663-9f28-4d147b5bd66e)
+  ![image](https://github.com/user-attachments/assets/82d26203-bab0-4b30-859b-a648cbc280c4)
 
 - Ubah `<0xYourPrivateKey>` menjadi private key wallet yang sudah diisi SepoliaETH (gunakan wallet baru, dan jangan lupa **pakai prefix 0x**).
 - Ubah `<0xYourAddress>` menjadi wallet address dari private key sebelumnya.
@@ -92,6 +103,10 @@ docker exec -it "$CID" curl -s \
   -d '{"jsonrpc":"2.0","id":1,"method":"node_getWorldStateSyncStatus","params":[]}' \
   <YOUR_IP_ADDRESS> | jq
 ```
+
+Kalau fully synced seperti ini:
+
+![image](https://github.com/user-attachments/assets/b3441eee-9318-4434-b9d6-3384a2f76738)
 
 ### 3.6 Get Your Block Number
 
