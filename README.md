@@ -2,7 +2,7 @@ Penulis: [Naufal](https://x.com/0xfal)
 
 > [!NOTE]
 > **WHAT IS Aztec?**\
-> TBD.
+> Building the first privacy network on Ethereum.
 
 # Tutorial Aztec Sequencer
 
@@ -62,7 +62,7 @@ source ~/.bashrc
 aztec-up alpha-testnet
 ```
 
-### 3.4 Start Your Sequencer
+### 3.5 Start Your Sequencer
 
 - Ubah `<SEPOLIA_RPC>` menjadi URL RPC yang disediakan [public](https://chainlist.org) (search: **Ethereum Sepolia**) atau buat sendiri di [Alchemy](https://dashboard.alchemy.com/chains/eth?network=ETH_SEPOLIA) / [Infura](https://www.infura.io) / penyedia RPC lainnya terserahmu bebas.
 
@@ -83,7 +83,7 @@ aztec start --node --archiver --sequencer \
   --p2p.p2pIp <YOUR_IP_ADDRESS>
 ```
 
-### 3.5 Get Your Block Number
+### 3.6 Get Your Block Number
 
 Detach dulu dari session, `ctrl` + `b`, kemudian tekan tombol `d`. Kalau kalian dari smartphone, simply exit dulu trus connect lagi, nanti pasti akan mulai dari luar session.
 
@@ -97,7 +97,7 @@ curl -s -X POST -H 'Content-Type: application/json' \
 
 Akan muncul `block number` mu, copy dan simpan.
 
-### 3.6 Get Your Proof
+### 3.7 Get Your Proof
 
 Jalankan perintah berikut, ganti `<YOUR_IP_ADDRESS>` menjadi alamat IP VPS mu, dan ganti `<BLOCK_NUMBER>` dengan block number yang didapat sebelumnya.
 
@@ -109,7 +109,7 @@ curl -s -X POST -H 'Content-Type: application/json' \
 
 Akan muncul `proof` mu, copy dan simpan.
 
-### 3.7 Get Role
+### 3.8 Get Role
 
 - Join [Aztec Discord server](https://discord.gg/aztec).
 - Jalankan perintah `/operator start` di [operator channel](https://discord.com/channels/1144692727120937080/1367196595866828982).
