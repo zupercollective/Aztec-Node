@@ -22,7 +22,11 @@ Penulis: [Naufal](https://x.com/0xfal)
 | ------------- | ------------- | ------------- |
 
 > [!NOTE]
-> Tutorial ini dibuat menggunakan Linux (Ubuntu), untuk sistem operasi lainnya mungkin akan sedikit berbeda!
+> Tutorial ini dibuat menggunakan Linux (Ubuntu 24 LTS), untuk sistem operasi lainnya mungkin akan sedikit berbeda !!
+
+> [!WARNING]
+> Penulis mendapati adanya kasus Ubuntu 22 LTS yang bermasalah: **file /root/.Xauthority doest not exist**\
+> Sebaiknya gunakan versi Ubuntu yang sama dengan penulis!
 
 ## 2. Prerequisites
 
@@ -31,15 +35,7 @@ Penulis: [Naufal](https://x.com/0xfal)
 
 ## 3. Execution
 
-### 3.1 Create a Session
-
-Ubah `<SESSION_NAME>` menjadi terserahmu.
-
-```
-tmux new -s <SESSION_NAME>
-```
-
-### 3.2 Install Aztec Sandbox
+### 3.1 Install Aztec Sandbox
 
 ```
 bash -i <(curl -s https://install.aztec.network)
@@ -49,46 +45,64 @@ Ketik saja `y` pas muncul seperti gambar berikut.
 
 ![image](https://github.com/user-attachments/assets/147ccf0f-0f4b-4655-b526-9bc764229ebb)
 
-### 3.3 Add to PATH
+### 3.2 Add to PATH
 
 ```
 echo 'export PATH="$HOME/.aztec/bin:$PATH"' >> ~/.bashrc
 source ~/.bashrc
 ```
 
-### 3.4 Update Aztec Toolchain
+Atau kalau di atas tidak bisa, coba opsi berikut.
+
+```
+echo "export PATH="$PATH:/home/aztec/.aztec/bin"" | tee -a .bash_profile
+source ~/.bashrc
+```
+
+### 3.3 Update Aztec Toolchain
 
 ```
 aztec-up alpha-testnet
 ```
 
+### 3.4 Create a Session
+
+Ubah `<SESSION_NAME>` menjadi terserahmu.
+
+```
+tmux new -s <SESSION_NAME>
+```
+
 ### 3.5 Start Your Sequencer
 
-- Ubah `<SEPOLIA_RPC>` menjadi URL RPC:
+- Ubah `<EXECUTION_CLIENT>` menjadi **Ethereum Sepolia RPC URL**:
   - [Alchemy](https://dashboard.alchemy.com/chains/eth?network=ETH_SEPOLIA) (goat)
   - [Infura/MetaMask Developer](https://developer.metamask.io/key/all-endpoints) (bapuk)
   - [QuickNode](https://dashboard.quicknode.com/endpoints/new/ETH/ethereum-sepolia) (gud)
   - Penyedia RPC lainnya terserahmu bebas.
 
-- Ubah `<CONSENSUS-HOST-URL>` menjadi **Ethereum Beacon Chain Sepolia**:
+- Ubah `<CONSENSUS_CLIENT>` menjadi **Ethereum Beacon Chain Sepolia RPC URL**:
   - [dRPC](https://drpc.org/login)
   
-  ![image](https://github.com/user-attachments/assets/13c0d6b3-d244-4e66-9566-e78bad959327)
+    ![image](https://github.com/user-attachments/assets/13c0d6b3-d244-4e66-9566-e78bad959327)
   
   - [Chainstack](https://console.chainstack.com/nodes)
   
-  ![image](https://github.com/user-attachments/assets/89b297f6-7618-4663-9f28-4d147b5bd66e)
-  ![image](https://github.com/user-attachments/assets/82d26203-bab0-4b30-859b-a648cbc280c4)
+    ![image](https://github.com/user-attachments/assets/89b297f6-7618-4663-9f28-4d147b5bd66e)
+    ![image](https://github.com/user-attachments/assets/82d26203-bab0-4b30-859b-a648cbc280c4)
 
-- Ubah `<0xYourPrivateKey>` menjadi private key wallet yang sudah diisi SepoliaETH (gunakan wallet baru, dan jangan lupa **pakai prefix 0x**).
+- Ubah `<0xYourPrivateKey>` menjadi private key wallet yang sudah diisi minimal 0.05SepoliaETH (gunakan wallet baru, dan jangan lupa **pakai prefix 0x**).
 - Ubah `<0xYourAddress>` menjadi wallet address dari private key sebelumnya.
 - Ubah `<YOUR_IP_ADDRESS>` menjadi alamat IP VPS mu.
+
+> [!WARNING]
+> SEBELUM MENJALANKAN PERINTAH, ikuti instruksi di atas !!!
 
 ```
 aztec start --node --archiver --sequencer \
   --network alpha-testnet \
-  --l1-rpc-urls <SEPOLIA_RPC> \
-  --l1-consensus-host-urls <CONSENSUS-HOST-URL> \
+  --l1-rpc-urls <EXECUTION_CLIENT> \
+  --l1-consensus-host-urls <CONSENSUS_CLIENT> \
   --sequencer.validatorPrivateKey <0xYourPrivateKey> \
   --sequencer.coinbase <0xYourAddress> \
   --p2p.p2pIp <YOUR_IP_ADDRESS>
@@ -124,7 +138,10 @@ Akan muncul `block number` mu, copy dan simpan.
 
 ### 3.7 Get Your Proof
 
-Jalankan perintah berikut, ganti `<YOUR_IP_ADDRESS>` menjadi alamat IP VPS mu, dan ganti `<BLOCK_NUMBER>` dengan block number yang didapat sebelumnya.
+> [!WARNING]
+> SEBELUM MENJALANKAN PERINTAH, ganti `<YOUR_IP_ADDRESS>` menjadi alamat IP VPS mu, dan ganti `<BLOCK_NUMBER>` dengan block number yang didapat sebelumnya !!!
+
+Jalankan perintah berikut.
 
 ```
 curl -s -X POST -H 'Content-Type: application/json' \
@@ -142,13 +159,16 @@ Akan muncul `proof` mu, copy dan simpan.
 
 ### 3.9 Register as a Validator
 
-- Ubah `<SEPOLIA_RPC>` menjadi RPC URL mu sebelumnya.
+- Ubah `<EXECUTION_CLIENT>` menjadi RPC URL mu sebelumnya.
 - Ubah `<0xYourPrivateKey>` menjadi private key wallet mu sebelumnya.
 - Ubah `<0xYourAddress>` menjadi wallet address mu sebelumnya.
 
+> [!WARNING]
+> SEBELUM MENJALANKAN PERINTAH, ikuti instruksi di atas !!!
+
 ```
 aztec add-l1-validator \
-  --l1-rpc-urls <SEPOLIA_RPC> \
+  --l1-rpc-urls <EXECUTION_CLIENT> \
   --private-key <0xYourPrivateKey> \
   --attester <0xYourAddress> \
   --proposer-eoa <0xYourAddress> \
@@ -156,7 +176,28 @@ aztec add-l1-validator \
   --l1-chain-id 11155111
 ```
 
-Kalian akan mendapati error apabila saldo ETH dari contract Aztec sedang kosong, cek berkala di [explorer](https://sepolia.etherscan.io/address/0x6653c74c968Ee7EF8819A10B04B848Dd36610f66). Kalau ada ETH-nya baru bisa mendaftar validator.
+> [!NOTE]
+> You may see a warning when trying to register as a validator. To maintain network health there is a daily quota for validators to join the validator set. If you are not able to join, it could mean that today's quota of validators has already been added to the set. If you see this, you can try again later.
+
+---
+
+# QnA
+
+## How to attach to my session?
+
+```
+tmux a -t <SESSION_NAME>
+```
+
+## How to update my node?
+
+Kembali ke session, matikan node mu dengan cara `ctrl` + `c`, dan jalankan perintah berikut.
+
+```
+aztec-up alpha-testnet
+```
+
+Hidupkan kembali node mu, seperti step 3.5.
 
 ---
 
