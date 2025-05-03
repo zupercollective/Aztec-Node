@@ -12,9 +12,9 @@ Penulis: [Naufal](https://x.com/0xfal)
 
 | Part | Minimum | Recommended |
 | ------------- | ------------- | ------------- |
-| CPU | 2 cores | 8 cores |
-| RAM | 2 GB | 16 GB |
-| SSD | 20 GB | 1 TB |
+| CPU | 4 cores | 8 cores |
+| RAM | 4 GB | 16 GB |
+| SSD | 80 GB | 1 TB |
 
 ### Software
 
