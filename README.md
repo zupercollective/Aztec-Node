@@ -126,7 +126,10 @@ Kalau fully synced seperti ini:
 
 Detach dulu dari session, `ctrl` + `b`, kemudian tekan tombol `d`. Kalau kalian dari smartphone, simply exit dulu trus connect lagi, nanti pasti akan mulai dari luar session.
 
-Kalau sudah berada di luar session, jalankan perintah berikut. Ganti `<YOUR_IP_ADDRESS>` menjadi alamat IP VPS mu.
+> [!WARNING]
+> SEBELUM MENJALANKAN PERINTAH, ganti `<YOUR_IP_ADDRESS>` menjadi alamat IP VPS mu !!!
+
+Kalau sudah berada di luar session, jalankan perintah berikut.
 
 ```
 curl -s -X POST -H 'Content-Type: application/json' \
