@@ -183,6 +183,10 @@ aztec add-l1-validator \
 
 # QnA
 
+## Private key with or without 0x?
+
+Gunakan saja 0x, itu dari official guide Aztec. Kalau pas kalian ekspor private key dari wallet tertentu tapi yang keluar tidak ada 0x-nya, tinggal tambahin 0x di depannya. 
+
 ## How to attach to my session?
 
 ```
