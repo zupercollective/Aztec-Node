@@ -25,8 +25,7 @@ Penulis: [Naufal](https://x.com/0xfal)
 > Tutorial ini dibuat menggunakan Linux (Ubuntu 24 LTS), untuk sistem operasi lainnya mungkin akan sedikit berbeda !!
 
 > [!WARNING]
-> Penulis mendapati adanya kasus Ubuntu 22 LTS yang bermasalah: **file /root/.Xauthority doest not exist**\
-> Sebaiknya gunakan versi Ubuntu yang sama dengan penulis!
+> Penulis mendapati adanya kasus beberapa region (Singapore salah satunya) bermasalah, kalo kalian mengalami ini coba ganti region VPS kalian.
 
 ## 2. Prerequisites
 
@@ -75,13 +74,13 @@ tmux new -s <SESSION_NAME>
 
 ### 3.5 Start Your Sequencer
 
-- Ubah `<EXECUTION_CLIENT>` menjadi **Ethereum Sepolia RPC URL**:
+- Ubah `<EXECUTION_CLIENT>` menjadi **Ethereum Sepolia RPC URL** (pilih salah astu, kalau salah satu bermasalah coba opsi lainnya):
   - [Alchemy](https://dashboard.alchemy.com/chains/eth?network=ETH_SEPOLIA) (goat)
   - [Infura/MetaMask Developer](https://developer.metamask.io/key/all-endpoints) (bapuk)
   - [QuickNode](https://dashboard.quicknode.com/endpoints/new/ETH/ethereum-sepolia) (gud)
   - Penyedia RPC lainnya terserahmu bebas.
 
-- Ubah `<CONSENSUS_CLIENT>` menjadi **Ethereum Beacon Chain Sepolia RPC URL**:
+- Ubah `<CONSENSUS_CLIENT>` menjadi **Ethereum Beacon Chain Sepolia RPC URL** (pilih salah astu, kalau salah satu bermasalah coba opsi lainnya):
   - [dRPC](https://drpc.org/login)
   
     ![image](https://github.com/user-attachments/assets/13c0d6b3-d244-4e66-9566-e78bad959327)
@@ -108,23 +107,26 @@ aztec start --node --archiver --sequencer \
   --p2p.p2pIp <YOUR_IP_ADDRESS>
 ```
 
-TUNGGU sampai node-mu synced baru lanjut ke step berikutnya, jalankan perintah berikut untuk megecek statusnya. Ganti `<YOUR_IP_ADDRESS>` menjadi alamat IP VPS mu.
+### 3.6 Check Synchronization
+
+Kalau masih di dalam session, detach dulu dari session dengan cara: `ctrl` + `b`, kemudian tekan tombol `d`. Kalau kalian dari smartphone, simply exit dulu trus connect lagi, nanti pasti akan mulai dari luar session.
 
 ```
-CID=$(docker ps -q --filter ancestor=aztecprotocol/aztec)
-docker exec -it "$CID" curl -s \
-  -H 'Content-Type: application/json' \
-  -d '{"jsonrpc":"2.0","id":1,"method":"node_getWorldStateSyncStatus","params":[]}' \
-  <YOUR_IP_ADDRESS> | jq
+docker logs -f --tail 100 $(docker ps -q --filter ancestor=aztecprotocol/aztec:latest | head -n 1) | grep "archiver"
 ```
 
-Kalau fully synced seperti ini:
+Akan muncul sampai mana proses sinkronisasi node kalian, bandingkan dengan [Aztect-Scan](https://aztecscan.xyz/blocks), dan pastikan block node sudah fully synced.
 
-![image](https://github.com/user-attachments/assets/b3441eee-9318-4434-b9d6-3384a2f76738)
+![image](https://github.com/user-attachments/assets/847f4289-ebbe-46b2-a1a0-fab350b863fb)
 
-### 3.6 Get Your Block Number
+![image](https://github.com/user-attachments/assets/2178328a-d825-4ed1-bc40-a8ccb624805d)
 
-Detach dulu dari session, `ctrl` + `b`, kemudian tekan tombol `d`. Kalau kalian dari smartphone, simply exit dulu trus connect lagi, nanti pasti akan mulai dari luar session.
+> [!WARNING]
+> PENTING DILAKUKAN, sebelum lanjut ke step berikutnya !!!
+
+### 3.7 Get Your Block Number
+
+Kalau masih di dalam session, detach dulu dari session dengan cara: `ctrl` + `b`, kemudian tekan tombol `d`. Kalau kalian dari smartphone, simply exit dulu trus connect lagi, nanti pasti akan mulai dari luar session.
 
 > [!WARNING]
 > SEBELUM MENJALANKAN PERINTAH, ganti `<YOUR_IP_ADDRESS>` menjadi alamat IP VPS mu !!!
@@ -139,7 +141,9 @@ curl -s -X POST -H 'Content-Type: application/json' \
 
 Akan muncul `block number` mu, copy dan simpan.
 
-### 3.7 Get Your Proof
+### 3.8 Get Your Proof
+
+Kalau masih di dalam session, detach dulu dari session dengan cara: `ctrl` + `b`, kemudian tekan tombol `d`. Kalau kalian dari smartphone, simply exit dulu trus connect lagi, nanti pasti akan mulai dari luar session.
 
 > [!WARNING]
 > SEBELUM MENJALANKAN PERINTAH, ganti `<YOUR_IP_ADDRESS>` menjadi alamat IP VPS mu, dan ganti `<BLOCK_NUMBER>` dengan block number yang didapat sebelumnya !!!
@@ -154,13 +158,13 @@ curl -s -X POST -H 'Content-Type: application/json' \
 
 Akan muncul `proof` mu, copy dan simpan.
 
-### 3.8 Get Role
+### 3.9 Get Role
 
 - Join [Aztec Discord server](https://discord.gg/aztec).
 - Jalankan perintah `/operator start` di [operator channel](https://discord.com/channels/1144692727120937080/1367196595866828982).
 - Isi dengan wallet address, block number, dan proof punyamu.
 
-### 3.9 Register as a Validator
+### 3.10 Register as a Validator
 
 - Ubah `<EXECUTION_CLIENT>` menjadi RPC URL mu sebelumnya.
 - Ubah `<0xYourPrivateKey>` menjadi private key wallet mu sebelumnya.
@@ -196,12 +200,30 @@ Gunakan saja 0x, itu dari official guide Aztec. Kalau pas kalian ekspor private 
 tmux a -t <SESSION_NAME>
 ```
 
+## Error `file /root/.Xauthority doest not exist`
+
+```
+touch ~/.Xauthority
+```
+
+## Error `world-state:block_stream`
+
+```
+rm -rf ~/.aztec/alpha-testnet
+```
+
 ## How to update my node?
 
 Kembali ke session, matikan node mu dengan cara `ctrl` + `c`, dan jalankan perintah berikut.
 
 ```
 aztec-up alpha-testnet
+```
+
+## How to delete my node data?
+
+```
+rm -rf ~/.aztec/alpha-testnet
 ```
 
 Hidupkan kembali node mu, seperti step 3.5.
