@@ -200,6 +200,12 @@ Gunakan saja 0x, itu dari official guide Aztec. Kalau pas kalian ekspor private 
 tmux a -t <SESSION_NAME>
 ```
 
+## How to check my Peer ID?
+
+```
+docker logs $(docker ps -q --filter ancestor=aztecprotocol/aztec:alpha-testnet | head -n 1) 2>&1 | grep -i "peerId" | grep -o '"peerId":"[^"]*"' | cut -d'"' -f4 | head -n 1
+```
+
 ## Error `file /root/.Xauthority doest not exist`
 
 ```
