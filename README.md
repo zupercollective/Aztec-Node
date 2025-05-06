@@ -206,6 +206,8 @@ tmux a -t <SESSION_NAME>
 docker logs $(docker ps -q --filter ancestor=aztecprotocol/aztec:alpha-testnet | head -n 1) 2>&1 | grep -i "peerId" | grep -o '"peerId":"[^"]*"' | cut -d'"' -f4 | head -n 1
 ```
 
+Paste on [Aztec P2P Explorer](https://aztec.nethermind.io/).
+
 ## Error `file /root/.Xauthority doest not exist`
 
 ```
