@@ -22,10 +22,11 @@ Penulis: [Naufal](https://x.com/0xfal)
 | ------------- | ------------- | ------------- |
 
 > [!NOTE]
-> Tutorial ini dibuat menggunakan Linux (Ubuntu 24 LTS), untuk sistem operasi lainnya mungkin akan sedikit berbeda !!
+> Tutorial ini dibuat menggunakan Linux (Ubuntu 24 LTS), untuk sistem operasi lainnya mungkin akan sedikit berbeda !!\
+> Specs: 4C 8GB, Singapore
 
 > [!WARNING]
-> Penulis mendapati adanya kasus beberapa region (Singapore salah satunya) bermasalah, kalo kalian mengalami ini coba ganti region VPS kalian.
+> Penulis mendapati adanya kasus beberapa region (Singapore salah satunya) bermasalah, kalo kalian mengalami ini coba ganti region VPS kalian (bisa coba Amsterdam).
 
 ## 2. Prerequisites
 
