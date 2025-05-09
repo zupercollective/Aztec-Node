@@ -76,12 +76,24 @@ tmux new -s <SESSION_NAME>
 ### 3.5 Start Your Sequencer
 
 - Ubah `<EXECUTION_CLIENT>` menjadi **Ethereum Sepolia RPC URL** (pilih salah astu, kalau salah satu bermasalah coba opsi lainnya):
-  - [Alchemy](https://dashboard.alchemy.com/chains/eth?network=ETH_SEPOLIA) (goat)
-  - [Infura/MetaMask Developer](https://developer.metamask.io/key/all-endpoints) (bapuk)
-  - [QuickNode](https://dashboard.quicknode.com/endpoints/new/ETH/ethereum-sepolia) (gud)
+  - [Alchemy](https://dashboard.alchemy.com/chains/eth?network=ETH_SEPOLIA)
+ 
+    ![image](https://github.com/user-attachments/assets/7d2ab7d1-e859-4c56-bfea-0bff750e7712)
+
+  - [dRPC](https://drpc.org/login)
+    
+    ![image](https://github.com/user-attachments/assets/1302c619-bba5-45d8-bf16-facd05a019c1)
+
+  - [BlockPI](https://dashboard.blockpi.io/rpc/endpoint)
+  - [Infura/MetaMask Developer](https://developer.metamask.io/key/all-endpoints)
   - Penyedia RPC lainnya terserahmu bebas.
 
 - Ubah `<CONSENSUS_CLIENT>` menjadi **Ethereum Beacon Chain Sepolia RPC URL** (pilih salah astu, kalau salah satu bermasalah coba opsi lainnya):
+
+  - [BlockPI](https://dashboard.blockpi.io/rpc/endpoint)
+ 
+    ![image](https://github.com/user-attachments/assets/83e38355-7a54-4512-8427-1c737c979987)
+
   - [dRPC](https://drpc.org/login)
   
     ![image](https://github.com/user-attachments/assets/13c0d6b3-d244-4e66-9566-e78bad959327)
@@ -162,8 +174,10 @@ Akan muncul `proof` mu, copy dan simpan.
 ### 3.9 Get Role
 
 - Join [Aztec Discord server](https://discord.gg/aztec).
-- Jalankan perintah `/operator start` di [operator channel](https://discord.com/channels/1144692727120937080/1367196595866828982).
+- Jalankan perintah `/operator start` di channel [operators│start-here](https://discord.com/channels/1144692727120937080/1367196595866828982).
 - Isi dengan wallet address, block number, dan proof punyamu.
+- Jalankan perintah `/checkip` di channel [upgrade-role](https://discord.com/channels/1132187953108615210/1248674234373378098/1370209943789240380).
+- Inputkan IP address VPS mu untuk upgrade role.
 
 ### 3.10 Register as a Validator
 
