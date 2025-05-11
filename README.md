@@ -85,6 +85,7 @@ tmux new -s <SESSION_NAME>
     ![image](https://github.com/user-attachments/assets/1302c619-bba5-45d8-bf16-facd05a019c1)
 
   - [BlockPI](https://dashboard.blockpi.io/rpc/endpoint)
+  - [Blast API](https://blastapi.io/dashboard)
   - [Infura/MetaMask Developer](https://developer.metamask.io/key/all-endpoints)
   - Penyedia RPC lainnya terserahmu bebas.
 
